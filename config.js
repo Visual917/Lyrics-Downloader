@@ -18,7 +18,7 @@ exports.fName = "MySongs";
 // Put the current date after the file name.
 exports.concDate = "True";
 
-// Put the song name before the lyrics. True or False.
+// Insert the song name before the lyrics. True or False.
 exports.songNameL = "True";
 
 // Remove signs in the lyrics like [Chorus] and [Intro]. This will remove everything between {}, [] and (). True or False.
