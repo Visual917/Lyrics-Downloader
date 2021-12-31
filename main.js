@@ -209,7 +209,6 @@ function getLyrics() {
         // handle error
         errorcount++;
         count++;
-        console.log(error);
         logDump("skippedsongs", urlx);
         logDump("skippedsongs", `\n`);
         console.log("Non critical error. Skipped " + urlx + ".");
