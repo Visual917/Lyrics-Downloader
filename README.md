@@ -1,6 +1,6 @@
 # Lyrics Downloader
 
-This is **Lyrics Downloader** from Visu. It scrapes **Genius.com** for song lyrics. I cannot see any fast alternative with this many features, so I decided building one myself.
+This is a 100% handwritten **Lyrics Downloader** from Visu. It scrapes **Genius.com** for song lyrics, and very fast. I cannot see any fast alternative with this many features, so I decided building one myself.
 I will keep it open-source, but please cite me whenever you fork or contribute to it. 
 I am open to any Issues. I'll be willing to update the script accordingly, where possible.
  
