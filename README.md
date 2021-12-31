@@ -15,7 +15,7 @@ I am open to any Issues. I'll be willing to update the script accordingly, where
 # Planned Features
  - [x] Better error handling
  - [x] Multiple artists
- - [ ] Being able to download skipped songs after the script is done
+ - [ ] Being able to retry skipped songs after the script is done
 # Screenshots
 ![](https://secret-forest.xyz/githublyrics/ss1.png)
 ![](https://secret-forest.xyz/githublyrics/ss2.png)
