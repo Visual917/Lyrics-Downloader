@@ -67,5 +67,5 @@ But if all of the system are okay, and the program fails to pull a song webpage 
 Failed song URLs will be outputted to the logs directory as well.
 
 `skippedsongs-2000-00-00 00.00.00.txt`
-# How is the execution process of the script?  (Roughly)
+# What is the execution process of the script?  (Roughly)
 ![](https://bit.ly/31gD6hE)
