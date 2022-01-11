@@ -6,7 +6,7 @@ I am open to any Issues. I'll be willing to update the script accordingly, where
  
 # Main Features
 
- - **Fast**. Download 1000 lyrics under a minute.
+ - **Fast**. Download approximately 1000 per minute, according to your internet connection.
  - Download lyrics from multiple artists
  - Format line breaks and get the lyrics delivered on a huge text lump, or properly formatted if you'd like
  - Remove signs like [Chorus] and [Intro] depending on the config
