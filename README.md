@@ -21,7 +21,7 @@ I am open to any Issues. I'll be willing to update the script accordingly, where
 ![](https://secret-forest.xyz/githublyrics/ss2.png)
 ![](https://secret-forest.xyz/githublyrics/ss3.png)
 ![](https://secret-forest.xyz/githublyrics/ss4.png)
-# Installation
+# Installation & Usage
  1. Install NodeJS from [here](https://nodejs.org/en/download) if you haven't already. While installing, you need to add NPM to path.
  
 ![](https://i.stack.imgur.com/SsGIl.png)
