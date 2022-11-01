@@ -1,6 +1,6 @@
 // @ts-nocheck
 const cheerio = require("cheerio");
-const axios = require("axios").default;
+const axios = require("axios");
 const fs = require("fs");
 const config = require("./config");
 
@@ -22,6 +22,22 @@ var firstArtistName = "";
 initializeArtist(inited);
 
 function initializeArtist(index) {
+  if (config.apiKey == "") {
+    console.log("No API key found. Please enter one in config.js first.");
+    return;
+  }
+  if (config.artistList.length == 0) {
+    console.log("No artists found. Please enter at least one in config.js.");
+    return;
+  }
+  if (config.pageCount < 1) {
+    console.log("Page count must be at least 1.");
+    return;
+  }
+  if (config.curPage < 1) {
+    console.log("Current page must be at least 1.");
+    return;
+  }
   axios
     .get(getSearchUrl(config.artistList[index]))
     .then(function (response) {
