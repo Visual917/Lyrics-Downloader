@@ -22,14 +22,14 @@ I am open to any Issues. I'll be willing to update the script accordingly, where
 ![](https://secret-forest.xyz/githublyrics/ss3.png)
 ![](https://secret-forest.xyz/githublyrics/ss4.png)
 # Installation & Usage
- 1. Install NodeJS from [here](https://nodejs.org/en/download) if you haven't already. While installing, you need to add NPM to path.
+ 1. Install NodeJS from [here](https://nodejs.org/en/download) if you haven't already. While installing, you need to add NPM to PATH.
  
 ![](https://i.stack.imgur.com/SsGIl.png)
 
  2. Go to the directory of the file.
  3. Edit `config.js` to your liking.
  4. Run Command Prompt or [Windows Terminal](https://www.microsoft.com/en-us/p/windows-terminal/9n0dx20hk701) (recommended) in the directory. (The easiest way is typing CMD on the address bar on the folder.)
- 5. Type `npm i` and press enter. This will install all of the dependencies of the script. You only need to do this once.
+ 5. Type `npm i` or `yarn` (if  you prefer, I think yarn is better.) and press enter. This will install all of the dependencies of the script. You only need to do this once.
  6. Type `node lyrics` to launch the program.
 # Config.JS
 You can change the way Lyrics Downloader handles the downloaded lyrics and tinker with it.
