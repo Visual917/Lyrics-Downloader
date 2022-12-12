@@ -3,6 +3,9 @@
 This is a 100% handwritten **Lyrics Downloader** from Visu. It scrapes **Genius.com** for song lyrics, and very fast. I cannot see any fast alternative with this many features, so I decided building one myself.
 I will keep it open-source, but please cite me whenever you fork or contribute to it. 
 I am open to any Issues. I'll be willing to update the script accordingly, where possible.
+
+Here is how ChatGPT describes my code:
+This is a JavaScript script that uses the Axios and Cheerio libraries to scrape lyrics from Genius.com. The script takes a list of artists from the config.js file and searches for the first artist in the list. It then retrieves the artist's ID and uses it to search for all of the artist's songs on Genius.com. The URLs for these songs are then stored in an array. The script then repeats this process for each artist in the list. Finally, the script uses the URLs stored in the array to scrape the lyrics for each song and saves them to a text file.
  
 # Main Features
 
