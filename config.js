@@ -1,5 +1,5 @@
 // The API key from Genius.com. You can generate yours at: https://docs.genius.com
-exports.apiKey = "6ZYhk-63Xxdc6MjRNE1WZwB8HPlaJVzjpsr_GCTOFccPhHCwCpbfb4_QXxjH3zIc";
+exports.apiKey = "YOUR_GENIUS.COM_CLIENT_ACCESS_TOKEN_HERE";
 
 // The names of the artists. Entering a full query isn't needed as the scraper is performing a search.
 // If you only want one artist, put in ["ArtistName"]
