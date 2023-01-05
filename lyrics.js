@@ -1,3 +1,8 @@
+// cemerson 20230105 | TODO:
+// - pad track number
+// - add config for separate files vs all single text file
+// - replace – with - in name
+
 // @ts-nocheck
 const cheerio = require("cheerio");
 const axios = require("axios");
@@ -166,12 +171,43 @@ function getLyrics() {
       .then(function (response) {
         // handle success
         let $ = cheerio.load(response["data"]);
+                            
         $("[data-lyrics-container=true]").find("br").replaceWith("\n");
         const songNameTemp = $("title").text();
         var songName = songNameTemp.replace(" Lyrics | Genius Lyrics", "");
-        songName = songName.replace(" | Genius Lyrics", "");
-        console.log(
-          `Downloaded Lyrics: (${count}/${URLbulk.length}): ` + songName,
+        songName = songName.replace(" | Genius Lyrics", "");                
+        songName = songName.replace(" ", " "); // cemerson 20230105 | removed weird characters in name?        
+
+        var nextTextFileName = fsFileName;
+        // cemerson 20230105 | get album and track number for filenames
+        if(config.filePerSong == "True"){
+          var albumInfoHTMLStr = $.html('div[class*="AlbumWrapper"]'); /* DEBUG */ // console.log('album info [' + albumInfoHTMLStr + ']');                        
+          var albumInfoHTML = cheerio.load(albumInfoHTMLStr).text(); /* DEBUG */ // console.log(albumInfoHTML); // Should be something like "Track 12 on Album Name"
+          var albumName = albumInfoHTML.split("on")[1].trim();
+          var trackNumber = albumInfoHTML.split("on")[0].replace("Track ","").trim(); /* DEBUG */ // console.log('album? [' + albumName + '] | Track: ' + trackNumber);        
+          var trackNumberStr = trackNumber.toString();
+          if(parseInt(trackNumber) < 10) trackNumberStr = '0' + trackNumber.toString();
+
+          // split up the artist song name that genius provides as "artist – songname" 
+          var artistSongInfo = songName.split("–");          
+          var artistName = artistSongInfo[0].trim();
+          var actualSongName = artistSongInfo[1].trim();          
+          songName = songName.replace("–","-");
+          // filename set to song below so each lyric will export to individual file
+          if(config.filePerSongPrefixArtistName == "True" && config.filePerSongPrefixAlbumName == "True"){
+            nextTextFileName = artistName + ' - ' + albumName + ' - ' + trackNumberStr + ' - ' + actualSongName;          
+          }else if(config.filePerSongPrefixArtistName == "False" && config.filePerSongPrefixAlbumName == "True"){
+            nextTextFileName = albumName + ' - ' + trackNumberStr + ' - ' + actualSongName;          
+          }else if(config.filePerSongPrefixArtistName == "True" && config.filePerSongPrefixAlbumName == "False"){
+            nextTextFileName = artistName + ' - ' + trackNumberStr + ' - ' + actualSongName;                      
+          }else{
+            nextTextFileName = trackNumberStr + ' - ' + actualSongName;                                            
+          }          
+          nextTextFileName = nextTextFileName.replace("  "," ");
+        }
+
+        console.log(          
+          `Downloaded Lyrics: (${count}/${URLbulk.length}): ` + nextTextFileName
         );
         var lyricsBare = $("[data-lyrics-container=true]").text();
         if (config.removeSigns == "True") {
@@ -185,22 +221,29 @@ function getLyrics() {
         if (config.removeSpaces == "True") {
           lyricsBare = lyricsBare.replace(/(\r\n|\r|\n)+/g, "$1");
         }
+
+        var finalFilePath = `output/${nextTextFileName}.txt`;
+        if(config.filePerSong == "True" && config.filePerSongUseAlbumFolders == "True"){
+          finalFilePath = `output/${albumName}/${nextTextFileName}.txt`;
+        }
+
+        // cemerson 20230105 | Add dashes and line breaks around song name title region
         if (config.hugeLump == "True") {
           if (config.songNameL == "True") {
-            var addx = `${songName}\n`;
+            var addx = `-------------------------------\n${songName}\n-------------------------------\n`;
           } else {
             var addx = "";
           }
-        } else {
-          if (fs.existsSync(`output/${fsFileName}.txt`)) {
+        } else {          
+          if (fs.existsSync(finalFilePath)) {
             if (config.songNameL == "True") {
-              var addx = `\n${songName}\n`;
+              var addx = `-------------------------------\n${songName}\n-------------------------------\n`;
             } else {
               var addx = `\n`;
             }
           } else {
             if (config.songNameL == "True") {
-              var addx = `${songName}\n`;
+              var addx = `-------------------------------\n${songName}\n-------------------------------\n`;
             } else {
               var addx = "";
             }
@@ -212,13 +255,20 @@ function getLyrics() {
         } else {
           var lyricsReal = `${addx}${lyricsBare}`;
         }
+
+        lyricsReal += '\n\n'; // add line breaks
+
         if (!fs.existsSync(`output`)) {
           fs.mkdirSync("output");
         }
-        if (!fs.existsSync(`output/${fsFileName}.txt`)) {
-          fs.writeFileSync(`output/${fsFileName}.txt`, lyricsReal);
+
+        if (config.filePerSongUseAlbumFolders == "True" && !fs.existsSync(`output/${albumName}`)) {
+          fs.mkdirSync("output/" + albumName);
+        }                
+        if (!fs.existsSync(finalFilePath)) {
+          fs.writeFileSync(finalFilePath, lyricsReal);
         } else {
-          fs.appendFileSync(`output/${fsFileName}.txt`, lyricsReal);
+          fs.appendFileSync(finalFilePath, lyricsReal);
         }
       })
       .catch(function (error) {
@@ -227,9 +277,12 @@ function getLyrics() {
         count++;
         logDump("skippedsongs", urlx);
         logDump("skippedsongs", `\n`);
+
+        var missingSongLyricsFileName = '_LyricsMissing_' + urlx.split(".com/")[1];
         console.log("Non critical error. Skipped " + urlx + ".");
-        console.log("Logging skipped songs at:");
-        console.log("logs/skippedsongs-" + dateTime + ".txt");
+        fs.writeFileSync('output/' + missingSongLyricsFileName + '.txt', 'No lyrics found');
+        // console.log("Logging skipped songs at:");
+        // console.log("logs/skippedsongs-" + dateTime + ".txt");
       })
       .then(function () {
         count++;
@@ -253,3 +306,10 @@ function logDump(type, arg) {
     fs.appendFileSync(`logs/${type}-${dateTimeTxt}`, arg);
   }
 }
+
+
+// function parseHTML(html) {
+//     var t = document.createElement('template');
+//     t.innerHTML = html;
+//     return t.content;
+// }
