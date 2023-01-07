@@ -18,7 +18,13 @@ This is a JavaScript script that uses the Axios and Cheerio libraries to scrape 
 # Planned Features
  - [x] Better error handling
  - [x] Multiple artists
+ - [x] Append track number (and/or artist and album name) to the lyric text file 
  - [ ] Being able to retry skipped songs after the script is done
+# Customized Output
+- filePerSong: Export each lyric to a single text file
+- filePerSongPrefixArtistName: Prefix the lyric text file with the artist name
+- ffilePerSongPrefixAlbumName: Prefix the lyric text file with the album name
+- filePerSongUseAlbumFolders: Place lyrics in an album folder
 # Screenshots
 ![](https://secret-forest.xyz/githublyrics/ss1.png)
 ![](https://secret-forest.xyz/githublyrics/ss2.png)
