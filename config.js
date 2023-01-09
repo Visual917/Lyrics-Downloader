@@ -3,7 +3,7 @@ exports.apiKey = "YOUR_GENIUS.COM_CLIENT_ACCESS_TOKEN_HERE";
 
 // The names of the artists. Entering a full query isn't needed as the scraper is performing a search.
 // If you only want one artist, put in ["ArtistName"]
-exports.artistList = ["Wolves At The Gate"];
+exports.artistList = ["Sia", "Metallica"];
 
 // How many pages to scrape for each artist. Every page has 20 songs.
 // Some pages may have less songs than 20, but other pages may still have more.
