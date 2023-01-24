@@ -25,6 +25,20 @@ This is a JavaScript script that uses the Axios and Cheerio libraries to scrape 
 - filePerSongPrefixArtistName: Prefix the lyric text file with the artist name
 - ffilePerSongPrefixAlbumName: Prefix the lyric text file with the album name
 - filePerSongUseAlbumFolders: Place lyrics in an album folder
+
+## config.js example
+
+```
+// If true each song is a new txt file (MySong1.txt, MySong2.txt, etc)
+exports.filePerSong = "True";
+// If above true this results in MyBand-MySong.txt
+exports.filePerSongPrefixArtistName = "True";
+// If both above true this would this results in: MyBand-MyAlbum-MySong.txt
+exports.filePerSongPrefixAlbumName = "False";
+// If all above true this results in /MyAlbum/MyBand-MyAlbum-MySong.txt
+exports.filePerSongUseAlbumFolders = "True";
+```
+
 # Screenshots
 ![](https://secret-forest.xyz/githublyrics/ss1.png)
 ![](https://secret-forest.xyz/githublyrics/ss2.png)
