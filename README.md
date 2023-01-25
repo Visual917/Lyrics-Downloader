@@ -19,31 +19,19 @@ This is a JavaScript script that uses the Axios and Cheerio libraries to scrape 
  - [x] Better error handling
  - [x] Multiple artists
  - [x] Append track number (and/or artist and album name) to the lyric text file 
- - [ ] Being able to retry skipped songs after the script is done
+ - [x] Retry skipped songs after the script is done (config.js: timedOutLyricRetryCount)
+ - [x] Skip Instrumental songs
+ - [ ] Ability to only download specific album(s)?
+
 # Customized Output
-- filePerSong: Export each lyric to a single text file
-- filePerSongPrefixArtistName: Prefix the lyric text file with the artist name
-- ffilePerSongPrefixAlbumName: Prefix the lyric text file with the album name
-- filePerSongUseAlbumFolders: Place lyrics in an album folder
-
-## config.js example
-
-```
-// If true each song is a new txt file (MySong1.txt, MySong2.txt, etc)
-exports.filePerSong = "True";
-// If above true this results in MyBand-MySong.txt
-exports.filePerSongPrefixArtistName = "True";
-// If both above true this would this results in: MyBand-MyAlbum-MySong.txt
-exports.filePerSongPrefixAlbumName = "False";
-// If all above true this results in /MyAlbum/MyBand-MyAlbum-MySong.txt
-exports.filePerSongUseAlbumFolders = "True";
-```
+All song lyrics can be saved in one single "**MySongs.txt**" or in subfolders and individual files like "**MyArtist/MyAlbum/01-MySong.txt**". See the filePerSong settings of the config.js file to configure to your needs.
 
 # Screenshots
-![](https://secret-forest.xyz/githublyrics/ss1.png)
-![](https://secret-forest.xyz/githublyrics/ss2.png)
-![](https://secret-forest.xyz/githublyrics/ss3.png)
-![](https://secret-forest.xyz/githublyrics/ss4.png)
+![](https://i.imgur.com/hG9FfZe.png)
+![](https://i.imgur.com/4aBLkDu.png)
+![](https://i.imgur.com/9DryzEp.png)
+![](https://i.imgur.com/0h3igHE.png)
+![](https://i.imgur.com/3Uvd0sK.png)
 # Installation & Usage
  1. Install NodeJS from [here](https://nodejs.org/en/download) if you haven't already. While installing, you need to add NPM to PATH.
  
@@ -53,7 +41,7 @@ exports.filePerSongUseAlbumFolders = "True";
  3. Edit `config.js` to your liking.
  4. Run Command Prompt or [Windows Terminal](https://www.microsoft.com/en-us/p/windows-terminal/9n0dx20hk701) (recommended) in the directory. (The easiest way is typing CMD on the address bar on the folder.)
  5. Type `npm i` or `yarn` (if  you prefer, I think yarn is better.) and press enter. This will install all of the dependencies of the script. You only need to do this once.
- 6. Type `node lyrics` to launch the program.
+ 6. Type `node lyrics` or `node lyrics "MyArtist1,MyArtist2"` to launch the program. If no artist is specified then the exports.artistList value(s) will be used.
 # Config.JS
 You can change the way Lyrics Downloader handles the downloaded lyrics and tinker with it.
 
@@ -69,6 +57,16 @@ You can change the way Lyrics Downloader handles the downloaded lyrics and tinke
 |`removeSigns`|Remove Signs|Remove signs in the lyrics like [Chorus] and [Intro]. This will remove everything between {}, [] and (). True or False.
 |`removeSpaces`|Remove Spaces|Remove line breaks. Useful when needed. This will put the whole song in a big lump without line breaks. Only line breaks between songs.
 |`hugeLump`|Huge Lump|Put absolutely everything on a big lump. No line breaks except between sentences. Any extra linebreaks are caused by the website.
+|`filePerSong`|File Per Song|Export each lyric to a single text file and allows the additional options below:
+|`filePerSongUseAlbumFolders`|Use Album Folder|Lyrics stored in output/album folder. filePerSong must be "True"
+|`filePerSongUseArtistFolder`|Use Artist Folder|Lyrics stored in output/artist/ or output/artist/album folder. filePerSong must be "True"
+|`filePerSongAppendGeniusURL`|Append Genius URL|Includes the genius.com url in each lyric file. filePerSong must be "True"
+|`filePerSongPrefixArtistName`|Prefix Artist Name|MyArtist-MySong.txt. filePerSong must be "True"
+|`filePerSongPrefixAlbumName`|Prefix Album Name|MyArtist-MyAlbum-MySong.txt or MyAlbum-MySong.txt. filePerSong must be "True"
+|`filePerSongPrefixAlbumWithYear`|Prefix Album with Year|output/2010-MyAlbum/MySong.txt. filePerSong must be "True"
+|`excludeInstrumentalLyrics`|Exclude Instrumental Lyrics|Tries to skip Instrumental songs. filePerSong must be "True"
+|`timedOutLyricRetryCount`|Timed Out Lyric Retry Count|Number of times to attempt to re-download previously-failed/timed-out lyrics.
+
 # Errors?
 Errors are dumped carefully. 
 
