@@ -3,7 +3,7 @@ exports.apiKey = "YOUR_GENIUS.COM_CLIENT_ACCESS_TOKEN_HERE";
 
 // The names of the artists. Entering a full query isn't needed as the scraper is performing a search.
 // If you only want one artist, put in ["ArtistName"]
-exports.artistList = ["Sia", "Metallica"];
+exports.artistList = ["Sia","Metallica"];
 
 // How many pages to scrape for each artist. Every page has 20 songs.
 // Some pages may have less songs than 20, but other pages may still have more.
@@ -31,13 +31,19 @@ exports.removeSpaces = "False";
 // Any extra linebreaks are caused by the website.
 exports.hugeLump = "False";
 
+// On by default to avoid wasting search/download time lyrics of instrumental songs
+exports.excludeInstrumentalLyrics = "True";
+
+// how many times to retry failed lyric downloads. 2-3 usually gets everything unless there's a new/unknown bug lyrics.js can't handle (yet)
+exports.timedOutLyricRetryCount = 4;
+
 // Option to have a lyrics text file per song vs multiple/all songs in one file
 // NOTE: If this is not True then the related "filePerSong" options below don't do anything
 exports.filePerSong = "True";
-
-// Couple options to allow prefixing (or not) the artist and album name to the text file name
-exports.filePerSongPrefixArtistName = "False";
-exports.filePerSongPrefixAlbumName = "False";
-
-// Put lyric files in album folder
-exports.filePerSongUseAlbumFolders = "True";
+// settings that only apply if filePerSong=True
+exports.filePerSongAppendGeniusURL = "False";       // Appends the original genius lyrics URL at the end of each lyric file
+exports.filePerSongUseAlbumFolders = "True";        // /output/MyAlbum/MySong.txt
+exports.filePerSongUseArtistFolder = "True";        // /output/MyArtist/MySong.txt or /output/MyArtist/MyAlbum/MySong.txt
+exports.filePerSongPrefixArtistName = "False";      // MyArtist-MyTrackNum-MySong.txt
+exports.filePerSongPrefixAlbumName = "False";       // MyArtist-MyAlbum-MySong.txt
+exports.filePerSongPrefixAlbumWithYear = "False";    // /output/2000 - MyAlbum/MySong.txt (Note: Not always accurate)
