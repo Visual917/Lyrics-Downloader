@@ -3,7 +3,7 @@ exports.apiKey = "YOUR_GENIUS.COM_CLIENT_ACCESS_TOKEN_HERE";
 
 // The names of the artists. Entering a full query isn't needed as the scraper is performing a search.
 // If you only want one artist, put in ["ArtistName"]
-exports.artistList = ["Sia","Metallica"];
+exports.artistList = ["Sia", "Metallica"];
 
 // How many pages to scrape for each artist. Every page has 20 songs.
 // Some pages may have less songs than 20, but other pages may still have more.
@@ -41,9 +41,9 @@ exports.timedOutLyricRetryCount = 4;
 // NOTE: If this is not True then the related "filePerSong" options below don't do anything
 exports.filePerSong = "True";
 // settings that only apply if filePerSong=True
-exports.filePerSongAppendGeniusURL = "False";       // Appends the original genius lyrics URL at the end of each lyric file
-exports.filePerSongUseAlbumFolders = "True";        // /output/MyAlbum/MySong.txt
-exports.filePerSongUseArtistFolder = "True";        // /output/MyArtist/MySong.txt or /output/MyArtist/MyAlbum/MySong.txt
-exports.filePerSongPrefixArtistName = "False";      // MyArtist-MyTrackNum-MySong.txt
-exports.filePerSongPrefixAlbumName = "False";       // MyArtist-MyAlbum-MySong.txt
-exports.filePerSongPrefixAlbumWithYear = "False";    // /output/2000 - MyAlbum/MySong.txt (Note: Not always accurate)
+exports.filePerSongAppendGeniusURL = "False"; // Appends the original genius lyrics URL at the end of each lyric file
+exports.filePerSongUseAlbumFolders = "True"; // /output/MyAlbum/MySong.txt
+exports.filePerSongUseArtistFolder = "True"; // /output/MyArtist/MySong.txt or /output/MyArtist/MyAlbum/MySong.txt
+exports.filePerSongPrefixArtistName = "False"; // MyArtist-MyTrackNum-MySong.txt
+exports.filePerSongPrefixAlbumName = "False"; // MyArtist-MyAlbum-MySong.txt
+exports.filePerSongPrefixAlbumWithYear = "False"; // /output/2000 - MyAlbum/MySong.txt (Note: Not always accurate)
